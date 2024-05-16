@@ -138,7 +138,7 @@
     # 2020-10-14: Virtualenv needed to be upgraded to get a newer version of pip installed
     # This version was the newest that would work with our version of setuptools.
     - name: virtualenv installed
-      pip: name=virtualenv version=16.7.10 extra_args=--trusted-host pypi.python.org
+      pip: name=virtualenv version=16.7.10 extra_args='--trusted-host pypi.python.org'
       sudo: True
 
     - name: check if virtualenv already created
