@@ -266,6 +266,10 @@ class SqoopImportFromMysql(SqoopImportTask):
         arglist.append('--skip-disable-keys')
         arglist.append('--skip-add-locks')
         arglist.append('--skip-extended-insert')
+        # mysqldump's client-side default (24M) fails with "Error 2020: Got packet bigger than
+        # 'max_allowed_packet'" on large rows, e.g. courseware_studentmodule.state. 256M covers the
+        # source databases' server-side limits (edxapp: 64M) while bounding the mapper's memory use.
+        arglist.append('--max-allowed-packet=256M')
 
         return arglist
 
